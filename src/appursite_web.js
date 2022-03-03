@@ -8,7 +8,7 @@
  * 
  * @summary	Requests additional resources when running in a tAPP client.
  * 
- * @version	2.0.2
+ * @version	2.0.3
  * @since 	1.0.0
  * @license	Website Plugin End User License Agreement
  * 
@@ -28,8 +28,11 @@
 
 (function ( appursite ) {
 
+	appursite.versions = appursite.versions || {};
+	appursite.versions.appursite_software = "Appursite 2.0.3";
+
 	/*********************************************************************************************************
-	**	CUSTOM SETTINGS AREA																				**
+	**	BEGIN CUSTOM SETTINGS AREA																				**
 	*********************************************************************************************************/
 
 	

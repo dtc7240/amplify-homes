@@ -111,6 +111,7 @@
 	}
 	appursite.modules.appursite.tapp_secondary_domains = tapp_secondary_domains;
 	
+	var location = window.location;
 	var custom_scheme = location.hostname;
 	if ( custom_scheme_override ) {
 		custom_scheme = custom_scheme_override;
@@ -200,13 +201,14 @@
 		function onLoadJsCssFileError(fileref) {
 			console.log('There was an error attempting to load the file:  ' + fileref.src );
 		}
-		if ( filetype == 'js' ) {
-			var fileref = document.createElement('script');
+		var fileref;
+		if ( filetype === 'js' ) {
+			fileref = document.createElement('script');
 			fileref.type = 'text/javascript';
 			fileref.src = filename;
 			fileref.onerror = function(){onLoadJsCssFileError(fileref)};
-		} else if ( filetype == 'css' ) {
-			var fileref = document.createElement('link');
+		} else if ( filetype === 'css' ) {
+			fileref = document.createElement('link');
 			fileref.rel = 'stylesheet';
 			fileref.type = 'text/css';
 			fileref.href = filename;
@@ -218,17 +220,17 @@
 
 	/* Return a querystring variable...thanks to CSS-tricks */
 	appursite.getQueryVar = function(query_string_key) {
-			query = window.location.search.substring(1);
+			var query = window.location.search.substring(1);
 			var vars = query.split("&");
 			for (var i=0;i<vars.length;i++) {
 					var pair = vars[i].split("=");
-					if(pair[0] == query_string_key){return pair[1];}
+					if(pair[0] === query_string_key){return pair[1];}
 			}
 			return(false);
 	};
 
 	appursite.handleRequest = function(event){
-		if ( typeof event.data.service != 'undefined' && event.data.service == 'appursite_handshake' ) {
+		if ( typeof event.data.service != 'undefined' && event.data.service === 'appursite_handshake' ) {
 			for ( var item in event.data.lsvars ) {
 				localStorage[item] = event.data.lsvars[item];
 			}
